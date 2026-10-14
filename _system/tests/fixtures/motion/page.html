@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<style>
+body{margin:0;font:16px sans-serif} .tall{height:3000px;padding:20px}
+.pulse{width:120px;height:40px;background:coral;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.track{display:flex;transition:none;width:300px;overflow:hidden}.slide{min-width:300px;height:60px;background:#ddd}
+.modal{position:fixed;inset:20% 10%;background:#fff;border:2px solid #333;display:none;z-index:99}
+.bar{position:fixed;left:0;right:0;bottom:0;height:60px;background:#222;color:#fff;display:none}
+</style></head><body>
+<header style="position:sticky;top:0;height:50px;background:#eee">Header</header>
+<div class="tall">
+  <div class="pulse">Sale</div>
+  <div class="track"><div class="slide" id="s">1</div></div>
+  <p>Offer ends in <span id="cd">10:00</span></p>
+</div>
+<div class="modal" id="timed" role="dialog"><button aria-label="Close">×</button>Get 10% off: join our list</div>
+<div class="modal" id="exit">Wait! Before you go: free shipping</div>
+<div class="bar" id="bar">Add to cart, $39</div>
+<script>
+let i=0; setInterval(()=>{document.getElementById('s').style.transform='translateX('+(-(++i%3)*10)+'px)'},500);
+let s=600; setInterval(()=>{s--; document.getElementById('cd').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')},1000);
+setTimeout(()=>{document.getElementById('timed').style.display='block'},3000);
+addEventListener('scroll',()=>{if(scrollY>800)document.getElementById('bar').style.display='block'});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget&&e.clientY<=0)document.getElementById('exit').style.display='block'});
+</script></body></html>

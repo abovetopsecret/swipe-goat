@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Send a funnel link and say swipe this. Captures the page as one self-contained file, gates the capture, scaffolds the swipe. By Above Top Secret.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#040604">
+<link rel="canonical" href="https://sg.abovetopsecret.ai/">
+<link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="abovetopsecret">
+<meta property="og:title" content="swipe-goat"><meta property="og:description" content="Send a funnel link and say swipe this. Captures the page as one self-contained file, gates the capture, scaffolds the swipe.">
+<meta property="og:url" content="https://sg.abovetopsecret.ai/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="swipe-goat"><meta name="twitter:description" content="Send a funnel link and say swipe this.">
+<title>swipe-goat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* ABOVE TOP SECRET · software delivery terminal. Single committed theme: phosphor on black. */
+:root {
+  --bg: #040604; --bg-2: #0A0F0A; --frame: #111811;
+  --ink: #C9F5CF; --ink-2: #7FBF8C; --ink-3: #3F6B49;
+  --phos: #5DF07A; --phos-dim: #2E7D46; --amber: #E6B450; --red: #E5484D;
+  --glow: 0 0 6px rgba(93, 240, 122, .45);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.55 "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  padding: 0 16px; padding-block: 28px 40px; min-height: 100vh;
+}
+body::after { /* scanlines + vignette */
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 5;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+}
+.term {
+  max-width: 900px; margin: 0 auto; background: var(--bg-2); border: 1px solid #1D2A1E; border-radius: 8px;
+  box-shadow: 0 0 0 1px #000, 0 30px 80px rgba(0,0,0,.7), inset 0 0 120px rgba(93,240,122,.04);
+  overflow: hidden;
+}
+.bar {
+  display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--frame); border-bottom: 1px solid #1D2A1E;
+  font-size: 12px; color: var(--ink-2); letter-spacing: .06em;
+}
+.bar i { width: 10px; height: 10px; border-radius: 50%; background: #2A3A2C; display: inline-block; }
+.bar i:first-child { background: #5A2C2C; }
+.bar span { margin-left: auto; text-transform: uppercase; }
+.screen { padding: 22px 26px 30px; text-shadow: var(--glow); }
+@media (max-width: 520px) { .screen { padding: 16px 14px 24px; } }
+
+/* boot */
+.boot { color: var(--ink-2); font-size: 13px; margin-bottom: 22px; }
+.boot div { white-space: pre-wrap; }
+.logo { font: 64px/0.9 "VT323", "IBM Plex Mono", monospace; color: var(--phos); letter-spacing: .04em; margin: 0 0 10px; text-shadow: 0 0 18px rgba(93,240,122,.5); }
+@media (max-width: 520px) { .logo { font-size: 44px; } }
+.meter { display: inline-block; width: 26ch; max-width: 70%; height: 10px; border: 1px solid var(--ink-3); vertical-align: middle; margin: 4px 8px 8px 0; position: relative; }
+.meter b { position: absolute; inset: 1px; width: 0; background: var(--phos); animation: fill 1.6s steps(26) forwards; }
+@keyframes fill { to { width: calc(100% - 2px); } }
+.ok { color: var(--phos); }
+.ver { margin-top: 8px; color: var(--ink-3); font-size: 12px; white-space: pre-wrap; }
+
+/* the command */
+.hero { margin: 22px 0 6px; }
+.hero .lbl { color: var(--ink-2); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px; }
+.copy { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; background: #000; border: 1px solid var(--phos-dim); padding: 12px 14px; }
+.copy code { color: var(--phos); font-size: 15px; overflow-wrap: anywhere; }
+.copy code::before { content: "$ "; color: var(--ink-3); }
+.copy button { margin-left: auto; flex: none; background: transparent; color: var(--ink-2); border: 1px solid var(--ink-3); font: inherit; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; cursor: pointer; }
+.copy button:hover, .copy button:focus-visible { color: var(--phos); border-color: var(--phos); outline: none; }
+.hero .sub { color: var(--ink-2); font-size: 13px; margin-top: 8px; max-width: 70ch; }
+
+/* session lines */
+.cmd { margin: 26px 0 8px; color: var(--ink); white-space: pre-wrap; }
+.cmd::before { content: "% "; color: var(--phos); }
+.cmd b { color: var(--amber); font-weight: 400; }
+.out { margin: 0 0 0 2ch; color: var(--ink); }
+.out p { margin: 0 0 10px; max-width: 68ch; }
+.out .k { color: var(--ink-2); }
+.kv { display: grid; grid-template-columns: 11ch 1fr; gap: 3px 12px; margin: 4px 0; }
+.kv dt { color: var(--ink-2); text-transform: uppercase; font-size: 12px; letter-spacing: .12em; padding-top: 2px; }
+.kv dd { margin: 0; overflow-wrap: anywhere; }
+.class { color: var(--red); }
+
+/* steps: a real sequence */
+.steps { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 6ch 1fr; gap: 10px; max-width: 74ch; }
+.steps li::before { content: "[" counter(s) "/" attr(data-n) "]"; color: var(--phos); }
+.steps h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; color: var(--phos); text-transform: uppercase; letter-spacing: .06em; }
+.steps p { margin: 0 0 6px; }
+pre { margin: 8px 0 6px; padding: 10px 12px; background: #000; border: 1px solid #1D2A1E; color: var(--amber); overflow-x: auto; font: inherit; font-size: 14px; text-shadow: none; }
+kbd, code { font: inherit; color: var(--amber); }
+
+/* report */
+table { border-collapse: collapse; width: 100%; margin-top: 6px; font-variant-numeric: tabular-nums; font-size: 14px; }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px dashed var(--ink-3); vertical-align: top; }
+th { color: var(--ink-2); font-weight: 400; text-transform: uppercase; font-size: 12px; letter-spacing: .12em; }
+td.s { white-space: nowrap; }
+.pass { color: var(--phos); } .warn { color: var(--amber); }
+.wrap { overflow-x: auto; }
+ul { margin: 6px 0 0; padding-left: 2ch; } li { margin: 4px 0; }
+.note { border-left: 2px solid var(--amber); padding: 6px 12px; margin: 10px 0; color: var(--ink-2); max-width: 70ch; }
+
+.cursor { display: inline-block; width: .6ch; height: 1.1em; background: var(--phos); vertical-align: text-bottom; animation: blink 1s steps(2) infinite; }
+.foot { margin-top: 30px; color: var(--ink-3); font-size: 12px; }
+ol.plain { margin: 6px 0 0; padding-left: 2.2ch; max-width: 68ch; } ol.plain li { margin: 4px 0; }
+ul.plain { margin: 2px 0 12px; padding-left: 2ch; max-width: 68ch; list-style: "- "; } ul.plain li { margin: 3px 0; }
+.out p.k { margin: 6px 0 2px; white-space: pre-wrap; }
+a { color: var(--phos); }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes flicker { 0% { opacity: .6; } 6% { opacity: .95; } 9% { opacity: .7; } 14% { opacity: 1; } }
+.screen { animation: flicker 1.2s ease-out 1; }
+@media (prefers-reduced-motion: reduce) { .screen, .meter b, .cursor { animation: none; } .meter b { width: calc(100% - 2px); } }
+@media print { body::after { display: none; } .term { box-shadow: none; } .screen { text-shadow: none; animation: none; } .meter b { width: calc(100% - 2px); animation: none; } }
+</style><style>
+.copy + .copy { margin-top: 6px; }
+.demo { margin: 22px 0 6px; }
+.demo video { display: block; width: 100%; height: auto; border: 1px solid var(--phos); border-radius: 6px; background: #000; }
+.demo-cap { margin-top: 8px; opacity: .75; font-size: .9em; }
+</style>
+</head><body>
+
+<div class="term">
+  <div class="bar"><i></i><i></i><i></i> abovetopsecret</div>
+  <div class="screen">
+    <div class="boot" id="boot"></div>
+    <div class="hero" id="hero"></div>
+    <div class="demo">
+      <video src="demo.mp4" poster="demo-poster.jpg" controls playsinline muted preload="metadata"></video>
+      <div class="demo-cap">85 seconds: Claude Code swiping a live store into a new theme, popups and carousels included.</div>
+    </div>
+    <div id="log"></div>
+    <div class="cmd"><span class="cursor"></span></div>
+    <div class="foot" id="foot"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================================
+//  DELIVERY TEMPLATE. Edit this object for the next tool. Everything below renders from it.
+//  `install` is a list of commands, so a shell one-liner and a slash-command
+//  install both render the same way.
+// ============================================================================
+const delivery = {
+  name: "swipe-goat",
+  tagline: "Send a funnel link and say swipe this. It captures the page, lists every animation and popup it has to keep, rebuilds it in your brand with real images, and ports it to Shopify, GHL or Checkout Champ.",
+  version: "1.1.3",
+  date: "October 7, 2026",
+  install: ["/plugin marketplace add abovetopsecret/swipe-goat", "/plugin install swipe-goat@swipe-goat"],
+  requires: "Claude Code, Node 20+, Python 3. Chromium, Playwright and Pillow install on first run. The codex CLI, logged in, for real images (placeholders without it).",
+  note: "The engine ships inside the plugin, so a fresh install with nothing but a brand folder runs a whole swipe. A workspace that has its own engine uses that one instead.",
+  steps: [
+    "Install the plugin. Make a folder with <brand>/brand_info/brand.md in it (the template is in the plugin's _system/templates).",
+    "Send the funnel URL and say swipe this for <brand>.",
+    "SingleFile captures the page headless with scripts blocked, and the capture-quality gate refuses anything that is not one self-contained file with real content.",
+    "It watches the LIVE page on phone and desktop: waits for timed popups, scrolls for scroll triggers, fires exit intent, and records every animation, carousel and countdown. The capture loses all of that, so this list is what the swipe must rebuild.",
+    "Claude swipes the copy, palette, logo and links into your brand, keeping the structure 1:1, while Codex paints every image with your real product attached.",
+    "The audit gate runs: zero trace of the reference brand, every control clicked, every claim sourced, the motion re-checked against the live page, and the layout measured in pixels at phone and desktop size with popups open.",
+    "It ports to Shopify, GHL or Checkout Champ, with a CONNECT.md for the parts only you can do."
+  ],
+  usage: [
+    ["swipe this <url> for <brand>", "capture, gate, motion inventory, swipe, audit, port"],
+    ["activate the swipe", "the reference is already on disk; skip the capture"],
+    ["python3 _system/scripts/motion.py <url>", "every popup, animation, carousel and countdown on a page, with its trigger"],
+    ["node scripts/capture.mjs <url> <dir>", "the reader: section order, type ramp, palette, copy, both screenshots. Research, not a swipe base."]
+  ],
+  changelog: [
+    ["1.1.2", "Oct 7, 2026", [
+      "A layout gate that measures pixels. Every other gate reads the code, so a popup whose Sign Up button hung off the card passed them all. layout.py renders phone and desktop with popups open and fails on sideways scroll, controls hanging off their card, and controls off-centre in it."
+    ]],
+    ["1.1.1", "Oct 7, 2026", [
+      "Offers are swiped 1:1. Countdowns, gift popups and was/now prices stay exactly as the reference has them, even when the brand has no matching offer, flagged to adjust after the swipe.",
+      "The motion gate tells the truth. A popup only counts if it is actually on screen (off-screen menus and drawers no longer read as popups), and motion is counted by region, so a carousel counts once and lazy-loading images do not count at all.",
+      "Swipe images now reach Shopify: the porter copies them into the theme's assets instead of leaving paths that 404. Found and fixed by the swipe agent itself during the demo.",
+      "Demo video: one line in Claude Code, 42 minutes, a live store swiped into a new theme."
+    ]],
+    ["1.1.0", "Oct 7, 2026", [
+      "The engine ships in the plugin. 1.0.0 needed the engine repo on disk, so a fresh install could capture and then had nothing to run.",
+      "Every animation and popup is now part of parity, as a hard rule. motion.py watches the live page and lists timed, scroll and exit-intent popups, sticky bars, CSS and JS animations, carousels and countdowns; the audit re-runs it against the swipe and fails on anything lost.",
+      "Real images from the Claude Code path. generate_images.py drives the local codex CLI with the brand's real product attached, two at a time, instead of always leaving placeholders.",
+      "Every control is click-tested and every claim and funnel handoff is sourced, from step 0 rather than at the end.",
+      "Shopify port fixes: the page's JavaScript is parse-checked (JSON-LD was being glued into it, which stopped every script), the price row keeps its compare-at price, and an add-on in the cart no longer drops the line item's properties.",
+      "First run installs the Chromium build the current Playwright needs, not only on a fresh checkout."
+    ]],
+    ["1.0.0", "Oct 3, 2026", [
+      "First release. A funnel URL becomes a gated reference capture and a scaffolded swipe folder.",
+      "Captures with SingleFile instead of a rendered-DOM dump: 0 external scripts and 0 stylesheets, against 146 and 21 for a page.content() dump.",
+      "The capture-quality gate runs automatically and also catches login-walled or bot-blocked shells by measuring visible text."
+    ]]
+  ],
+  links: [["source", "https://github.com/abovetopsecret/swipe-goat"]],
+  contact: "Above Top Secret"
+};
+// ============================================================================
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const cmd = (c, arg) => `<div class="cmd">${esc(c)}${arg ? ` <b>${esc(arg)}</b>` : ""}</div>`;
+const d = delivery;
+
+document.getElementById("boot").innerHTML = `
+  <div class="logo">${esc(d.name.toUpperCase())}</div>
+  <div><span class="meter"><b></b></span> <span class="ok">OK</span></div>
+  <div>${esc(d.tagline)}</div>
+  <div class="ver">v${esc(d.version)}  ${esc(d.date)}  ${esc(d.requires)}</div>`;
+
+// One copy row per command: pasting two slash commands at once breaks Claude Code's prompt.
+document.getElementById("hero").innerHTML = `
+  ${d.install.map((c, i) => `<div class="copy"><code>${esc(c)}</code><button type="button" data-i="${i}">Copy</button></div>`).join("")}
+  ${d.note ? `<div class="note">${esc(d.note)}</div>` : ""}`;
+document.querySelectorAll("#hero .copy button").forEach(b => b.onclick = async () => {
+  try { await navigator.clipboard.writeText(d.install[b.dataset.i]); b.textContent = "Copied"; }
+  catch { b.textContent = "Select it"; }
+  setTimeout(() => b.textContent = "Copy", 1600);
+});
+
+document.getElementById("log").innerHTML = `
+  ${cmd("install")}
+  <ol class="out plain">${d.steps.map(t => `<li>${esc(t)}</li>`).join("")}</ol>
+
+  ${cmd("usage")}
+  <div class="out">${d.usage.map(u => `<p><span class="ok">${esc(u[0])}</span><br><span class="k">${esc(u[1])}</span></p>`).join("")}</div>
+
+  ${cmd("changelog")}
+  <div class="out">${d.changelog.map(v => `<p class="k">${esc(v[0])}  ${esc(v[1])}</p><ul class="plain">${v[2].map(i => `<li>${esc(i)}</li>`).join("")}</ul>`).join("")}</div>`;
+
+document.getElementById("foot").innerHTML = `<span>${esc(d.contact)}</span> \u00b7 ${d.links.map(l => `<a href="${esc(l[1])}">${esc(l[0])}</a>`).join(" \u00b7 ")}`;
+</script>
+
+</body></html>

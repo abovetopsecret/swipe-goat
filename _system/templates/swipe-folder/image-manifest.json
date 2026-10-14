@@ -1,0 +1,19 @@
+{
+  "reference": "<reference-name>",
+  "brand": "<brand>",
+  "images": [
+    {
+      "id": "example-1",
+      "slot": "adv-section-01-hero",
+      "role": "hero",
+      "alt": "descriptive alt text for the swapped image",
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3",
+      "src_original": "assets/original-hero.jpg",
+      "brand_prompt": "<lock-in paragraph> + <original scene reframed for our brand>",
+      "target_filename": "adv-section-01-hero.jpg",
+      "status": "pending"
+    }
+  ]
+}

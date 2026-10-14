@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>
+body{margin:0;font:16px sans-serif;background:#fafafa}
+.pop{position:fixed;inset:10% 10%;display:none;z-index:9}
+.card{background:#222;color:#fff;border-radius:16px;text-align:center;padding:0 0 16px}
+.col{width:100%;padding:12px 16px 0}               /* content-box: 32px wider than the card */
+.f{padding:0 30px 0 46px}.f input{width:100%;box-sizing:border-box;height:40px}
+.b{padding:0 10px}.b a{display:block;background:coral;color:#fff;padding:12px;border-radius:20px}
+</style></head><body><p>Page</p>
+<div class="pop" id="pop"><div class="card"><div class="col"><h3>Claim your free mug</h3>
+<div class="f"><input type="email" placeholder="Email"></div><br><div class="b"><a class="btn" href="#">Sign up</a></div></div></div></div>
+<script>setTimeout(()=>{document.getElementById('pop').style.display='block'},1000)</script></body></html>

@@ -1,0 +1,51 @@
+# <BRAND NAME> — brand.md
+
+> Single source of brand truth. Codex injects this into every swipe for this brand.
+> Fill every section. Leave nothing as `<...>`.
+
+## Identity
+- **Brand name:** <name>
+- **Tagline:** <short tagline>
+- **One-line offer:** <what we sell, to whom, core promise>
+- **Production domain:** <https://brand.com or example.com placeholder>
+
+## Voice & tone
+- **Reads like:** <e.g. punchy direct-response; warm editorial; expert/clinical>
+- **Reading level:** <e.g. 6th grade>
+- **Do:** <3 bullets>
+- **Don't:** <3 bullets — banned phrasings, tone to avoid>
+- **Example lines:**
+  1. <on-brand headline>
+  2. <on-brand subhead>
+  3. <on-brand CTA>
+
+## Offer mechanics
+- **Product:** <what it physically is>
+- **Variants:** <sizes/flavors/tiers, e.g. XS–XL>
+- **Purchase options:** <e.g. Subscribe & Save vs One-time × Buy 1 / 2 / 3>
+- **Pricing:** <per option, or "TBD placeholder">
+- **Guarantee / refund:** <policy, or "none — do not imply one">
+
+## Claims & compliance
+- **Allowed claims:** <list>
+- **Banned words/claims:** <e.g. "guarantees", unsupported health claims>
+- **Required disclaimers:** <verbatim text that MUST appear, e.g. earnings/health>
+- **Seals / certifications:** <e.g. VOHC; or none>
+
+## Visual identity
+- **Palette:** <hex list, role-labeled>
+- **Fonts:** <heading / body>
+- **Logo:** `assets/<logo file>`
+- **Key product/asset shots:** `assets/<...>` (list)
+
+## Image lock-in prompt
+> Paste-once paragraph prepended to EVERY image-generation prompt so brand
+> consistency holds across the whole funnel. Describe: product shape/material/color,
+> packaging, aesthetic, and "no text/letters/logos with words in any image".
+
+<lock-in paragraph here>
+
+## Link map
+- **Checkout provider:** <Checkout Champs | GoHighLevel>
+- **Checkout URL convention:** <pattern, or "all `#` placeholders">
+- **Legal pages:** Terms `<url|#>` · Privacy `<url|#>`

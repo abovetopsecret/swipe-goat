@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "swipe-goat",
+  "description": "Send a funnel URL and say \"swipe this\": captures it as a fully self-contained single file, gates the capture, scaffolds the swipe folder, then runs the canonical swipe runbook.",
+  "owner": {
+    "name": "Above Top Secret",
+    "url": "https://github.com/abovetopsecret"
+  },
+  "plugins": [
+    {
+      "name": "swipe-goat",
+      "description": "Send a funnel URL and say \"swipe this\": captures it as a fully self-contained single file, gates the capture, scaffolds the swipe folder, then runs the canonical swipe runbook.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
